@@ -1,0 +1,16 @@
+/*"""This Add-In provides Snippet functionality to JMP Script Editor.
+
+Author: 
+Creation Date: 
+Creation JMP Version: 
+
+Description: 
+
+Todo:
+    * 
+    * 
+	
+"""*/
+
+Names Default To Here(1);
+

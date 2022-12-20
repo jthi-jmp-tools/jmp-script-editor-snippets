@@ -1,0 +1,6 @@
+id=jthi.jmp.script.editor.snippets
+name=JMP Script Editor Snippets
+supportJmpSE=0
+addinVersion=1
+minJmpVersion=16
+host=Win

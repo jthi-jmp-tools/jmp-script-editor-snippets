@@ -1,0 +1,37 @@
+<!-- JMP Add-In Builder created --><jm:menu_and_toolbar_customizations xmlns:jm="http://www.jmp.com/ns/menu" version="3">
+  <jm:insert_in_main_menu>
+    <jm:insert_in_menu>
+      <jm:name>Add-Ins</jm:name>
+      <jm:insert_after>
+        <jm:name></jm:name>
+        <jm:menu>
+          <jm:name>SCRIPT EDITOR SNIPPETS</jm:name>
+          <jm:caption>Script Editor Snippets</jm:caption>
+          <jm:command>
+            <jm:name>SCRIPT EDITOR SNIPPETS</jm:name>
+            <jm:caption>Script Editor Snippets</jm:caption>
+            <jm:action type="path">$ADDIN_HOME(jthi.jmp.script.editor.snippets)\jmp_script_editor_snippets.jsl</jm:action>
+            <jm:accel>Ctrl+Shift+Space</jm:accel>
+            <jm:tip>Launches snippet window</jm:tip>
+            <jm:icon type="builtin">DebuggerGoToSource</jm:icon>
+          </jm:command>
+          <jm:separator />
+          <jm:command>
+            <jm:name>OPEN SNIPPET HELP</jm:name>
+            <jm:caption>Open Snippet Help</jm:caption>
+            <jm:action type="path">$ADDIN_HOME(jthi.jmp.script.editor.snippets)\bin\open_help.jsl</jm:action>
+            <jm:tip>Opens JMP Community page for Add-In in browser</jm:tip>
+            <jm:icon type="builtin">SearchIndex</jm:icon>
+          </jm:command>
+          <jm:command>
+            <jm:name>OPEN USER'S SNIPPET FOLDER</jm:name>
+            <jm:caption>Open user's snippet folder</jm:caption>
+            <jm:action type="path">$ADDIN_HOME(jthi.jmp.script.editor.snippets)\bin\open_user_snippet_folder.jsl</jm:action>
+            <jm:tip>Opens users snippet folder in file explorer</jm:tip>
+            <jm:icon type="builtin">ProjectFolder</jm:icon>
+          </jm:command>
+        </jm:menu>
+      </jm:insert_after>
+    </jm:insert_in_menu>
+  </jm:insert_in_main_menu>
+</jm:menu_and_toolbar_customizations>
