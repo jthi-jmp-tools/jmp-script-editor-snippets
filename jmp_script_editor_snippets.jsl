@@ -11,8 +11,6 @@ snippets to users Documents folder with this add-ins name (jmp_script_editor_sni
 Todo:
     * Fix focus issues (might require Windows API...)
     * Add new snippets
-    * Take whitespace before snippet_str into account when inserting snippet
-    * Add add-in buttons for Help and Open user documents folder
 	* Add possibility to embed snippet list to right side of script editor
 """*/
 
@@ -113,12 +111,15 @@ get_snippet_line = function({}, {Default Local},
 	lines = sb << Get Lines();
 	cur_snippet_line = 0;
 	cur_line = "";
+	intendation = "";
 	line_found = 0;
 	For Each({line, idx}, lines,
 		For Each({snippet_str}, here:snippet_list,
-			If(Starts With(Trim Whitespace(line), snippet_str),
+			snippet_line_str = Regex(line, "(\s*)("||snippet_str||")");
+			If(!Is Missing(snippet_line_str),				
 				cur_snippet_line = idx;
 				cur_line = line;
+				intendation = Substitute(snippet_line_str, snippet_str, "");
 				line_found = 1;
 				break();
 			);
@@ -127,7 +128,7 @@ get_snippet_line = function({}, {Default Local},
 			break();
 		);
 	);
-	return(Eval List({cur_snippet_line, cur_line}));
+	return(Eval List({cur_snippet_line, cur_line, intendation}));
 );
 
 run_snippet_selector = function({}, {Default Local},
@@ -135,7 +136,7 @@ run_snippet_selector = function({}, {Default Local},
 	If(Is Empty(Current Window()[Script Box(1)]),
 		return();
 	);
-	{cur_snippet_line, line} = get_snippet_line();
+	{cur_snippet_line, line, intendation} = get_snippet_line();
 	If(cur_snippet_line < 1,
 		return();
 	);
@@ -190,11 +191,19 @@ run_snippet_selector = function({}, {Default Local},
 	);
 	
 	If(N Items(nw["lb"]) > 0,
-		{cur_snippet_line, line} = get_snippet_line();
+		{cur_snippet_line, line, intendation} = get_snippet_line();
+		show(cur_snippet_line);
 		If(cur_snippet_line > 0,
 			cur_snippet = nw["lb"][1];
 			sb = Current Window()[Script Box(1)];
-			sb << Set line text(cur_snippet_line, Char(snippet_list[cur_snippet]))
+			
+			lines = Words(snippet_list[cur_snippet], "\!N");
+			indented_lines = Transform Each({line}, lines,
+				intendation || line;
+			);
+			indented_snippet = Concat Items(indented_lines, "\!N");
+			show(indented_snippet);
+			sb << Set line text(cur_snippet_line, indented_snippet)
 		);
 	);
 );
