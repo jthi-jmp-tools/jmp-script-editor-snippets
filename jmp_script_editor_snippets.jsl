@@ -192,21 +192,17 @@ run_snippet_selector = function({}, {Default Local},
 	
 	If(N Items(nw["lb"]) > 0,
 		{cur_snippet_line, line, intendation} = get_snippet_line();
-		show(cur_snippet_line);
 		If(cur_snippet_line > 0,
 			cur_snippet = nw["lb"][1];
 			sb = Current Window()[Script Box(1)];
 			
-			lines = Words(snippet_list[cur_snippet], "\!N");
+			lines = Items(snippet_list[cur_snippet], "\!r");
 			indented_lines = Transform Each({line}, lines,
-				intendation || line;
+				intendation || line
 			);
-			indented_snippet = Concat Items(indented_lines, "\!N");
-			show(indented_snippet);
+			indented_snippet = Concat Items(indented_lines, "");
 			sb << Set line text(cur_snippet_line, indented_snippet)
 		);
 	);
 );
 run_snippet_selector();
-
-Write();

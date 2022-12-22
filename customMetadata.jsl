@@ -2,9 +2,9 @@
 
 Associative Array(
 	List(
-		List( "addinVersion", 1 ),
+		List( "addinVersion", 2 ),
 		List( "author", "jthi" ),
-		List( "buildDate", 3754407891 ),
+		List( "buildDate", 3754595452 ),
 		List( "deployedAddinsFilename", "publishedAddins.jsl" ),
 		List( "deployedAddinsLoc", "" ),
 		List( "id", "jthi.jmp.script.editor.snippets" ),
